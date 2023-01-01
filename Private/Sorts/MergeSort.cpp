@@ -1,8 +1,6 @@
 
 #include "Sorts/Sorts.h"
 
-using std::vector;
-
 void MergeSortImplement(vector<int>& array, int start, int end);
 void Merging(vector<int>& array, int start, int mid, int end);
 

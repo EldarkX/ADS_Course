@@ -1,9 +1,5 @@
 
 #include "Sorts/Sorts.h"
-#include "Utils/Utils.h"
-#include <limits.h>
-
-using std::vector;
 
 void SelectionSort(vector<int>& array)
 {

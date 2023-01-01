@@ -1,7 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <iostream>
+#include <ADS.h>
 
 void GenerateRandomArray(std::vector<int> &array, int min, int max);
 bool TestSorts(const std::vector<int>& array);

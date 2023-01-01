@@ -1,11 +1,6 @@
 
 #include "Utils/Utils.h"
 #include "Sorts/Sorts.h"
-#include <cstdlib>
-#include <algorithm>
-#include <ctime>
-
-using std::vector;
 
 void GenerateRandomArray(std::vector<int> &array, int min, int max)
 {
