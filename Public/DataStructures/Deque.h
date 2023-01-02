@@ -1,7 +1,7 @@
 #pragma once
 
 template <class T, int Size>
-class Queue
+class Deque
 {
 public:
 	void	Enqueue(T value)
@@ -26,6 +26,23 @@ public:
 		return value;
 	}
 
+	void	Push(T value)
+	{
+		Enqueue(value);
+	}
+
+	T		Pop()
+	{
+		T value = 0;
+		if (!IsEmpty()) //underflow protection
+		{
+			value = data[tail];
+			tail = (tail == 0) ? Size - 1 : tail - 1;
+			isEmpty = head == tail;
+		}
+		return value;
+	}
+
 	bool	IsEmpty() const;
 	bool	IsFull() const;
 
@@ -37,15 +54,15 @@ private:
 };
 
 template<class T, int Size>
-bool Queue<T, Size>::IsEmpty() const
+bool Deque<T, Size>::IsEmpty() const
 {
 	return isEmpty;
 }
 
 template<class T, int Size>
-bool Queue<T, Size>::IsFull() const
+bool Deque<T, Size>::IsFull() const
 {
 	return head == tail && !isEmpty;
 }
 
-void TestQueue();
+void TestDeque();
