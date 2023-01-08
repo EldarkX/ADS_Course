@@ -9,72 +9,84 @@ struct Node
 	Node	*next;
 };
 
+//Circled single linked list
 template<class T>
 class LinkedList
 {
 public:
+	LinkedList()
+	{
+		sentinel = new Node<T>;
+		sentinel->data = 0;
+		sentinel->next = sentinel;
+	}
+	//O(1)
 	void Insert(T value)
 	{
 		Node<T> *NewNode = new Node<T>();
 		NewNode->data = value;
-		NewNode->next = head;
-		head = NewNode;
+		NewNode->next = sentinel->next;
+		sentinel->next = NewNode;
 	}
+	//O(n)
 	void Remove(Node<T>* node)
 	{
-		if (node && head)
+		if (!IsEmpty() && node)
 		{
-			Node<T>* tmp = head;
-			if (node == head)
-			{	
-				head = head->next;
-				delete tmp;
-			}
-			else
+			Node<T>* tmp = sentinel;
+			while (tmp->next != sentinel && tmp->next != node)
 			{
-				while (tmp->next && tmp->next != node)
-					tmp = tmp->next;
+				tmp = tmp->next;
+			}
+			if (tmp->next != sentinel)
+			{
 				tmp->next = node->next;
 				delete node;
 			}
 		}
 	}
+	//O(n)
 	void Remove(T value)
 	{
 		Remove(Search(value));
 	}
+	//O(n)
 	Node<T>* Search(T value)
 	{
-		Node<T> *tmp = head;
-		while (tmp)
+		sentinel->data = value;
+		Node<T> *tmp = sentinel->next;
+		while (tmp->data != value)
 		{
-			if (tmp->data == value)
-				return tmp;
 			tmp = tmp->next;
 		}
-		return nullptr;
+		return tmp == sentinel ? nullptr : tmp;
 	}
 	Node<T>* Head() const
 	{
-		return head;
+		if (!IsEmpty())
+			return sentinel->next;
+		return nullptr;
 	}
 	bool IsEmpty() const
 	{
-		return head == nullptr;
+		return sentinel->next == sentinel;
 	}
 	void Print()
 	{
-		Node<T> *tmp = head;
-		while (tmp)
+		Node<T> *tmp = sentinel->next;
+		while (tmp != sentinel)
 		{
 			cout << tmp->data << " ";
 			tmp = tmp->next;
 		}
 		cout << endl;
 	}
-
+	~LinkedList()
+	{
+		delete sentinel;
+	}
 private:
-	Node<T>*	head = nullptr;
+	Node<T>*	sentinel = nullptr;
 };
 
 void TestLinkedList();
