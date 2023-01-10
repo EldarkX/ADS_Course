@@ -71,6 +71,21 @@ public:
 	{
 		return sentinel->next == sentinel;
 	}
+	void Reverse()
+	{
+		Node<T>* head = sentinel->next;
+		Node<T>* prev = sentinel;
+		Node<T>* next = nullptr;
+
+		while (head != sentinel)
+		{
+			next = head->next;
+			head->next = prev;
+			prev = head;
+			head = next;
+		}
+		sentinel->next = prev;
+	}
 	void Print()
 	{
 		Node<T> *tmp = sentinel->next;

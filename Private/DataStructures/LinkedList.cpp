@@ -30,5 +30,18 @@ void TestLinkedList()
 	{
 		list.Remove(list.Head());
 	}
+
+	//reverse
+	for (int i = 0; i < 6; ++i)
+		list.Insert(i);
+	list.Reverse();
+	list.Print();
+	list.Reverse();
+	list.Print();
+	while (!list.IsEmpty())
+	{
+		list.Remove(list.Head());
+	}
+	list.Print();
 }
 
